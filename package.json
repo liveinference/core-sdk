@@ -1,5 +1,5 @@
 {
-  "name": "@live-inference/core-sdk",
+  "name": "@liveinference/core-sdk",
   "version": "1.0.0",
   "description": "LiveInference SDK for JavaScript",
   "main": "./dist/index.js",
