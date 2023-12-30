@@ -38,6 +38,8 @@ export interface ServerClient extends Base {
     unlinkApiSession(userId: string): Promise<boolean>;
     createApiSession(userId: string, email: string, expiresInMinutes: number): Promise<ApiSessionResult>;
     syncApiSession(userId: string, email: string, expiresInMinutes: number, minimaExpiresInMinutes: number) : Promise<ApiSessionResult>;
+    blockUser(userId: string | number) : Promise<boolean>;
+    unblockUser(userId: string | number): Promise<boolean>;
 }
 
 export interface ClientCreateOptions {

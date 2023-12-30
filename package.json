@@ -1,6 +1,6 @@
 {
   "name": "@liveinference/core-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "LiveInference SDK for JavaScript",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

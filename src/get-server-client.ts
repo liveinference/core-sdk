@@ -23,5 +23,5 @@ export default function getServerClient(
         }
         serverClient = new ServerClient({ apiKey });
     }
-    return serverClient;
+    return serverClient as types.ServerClient;
 }

@@ -3,7 +3,7 @@ import { Base } from './base';
 import isInBrowser from './is-in-browser';
 import type * as types from './types';
 
-export class ServerClient extends Base {
+export class ServerClient extends Base implements types.ServerClient {
 
     constructor({apiKey, type, expiresAt, ...options} : types.ClientCreateOptions) {
         super();
@@ -142,5 +142,24 @@ export class ServerClient extends Base {
             return { apiSessionToken, apiSessionExpires };
         }
         return { apiSessionToken, apiSessionExpires };
+    }
+
+    // only works when use auth-adaptor sdk
+    //
+    async blockUser(userId: string | number) : Promise<boolean> {
+        const { error } = await this.request('/api/v1/user/' + userId, 
+          {method: 'PUT', body: {blocked: true}});
+        if (error) return false;
+        else return true;
     } 
+    
+    // only works when use auth-adaptor sdk
+    //
+    async unblockUser(userId: string | number) : Promise<boolean> {
+        const { error } = await this.request('/api/v1/user/' + userId, 
+          {method: 'PUT', body: {blocked: false}});
+        if (error) return false;
+        else return true;
+    }
+  
 }
