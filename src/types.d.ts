@@ -6,10 +6,10 @@ export interface Base {
     getApiBaseUrl() : string;
     getAuthKey() : string;
     isExpired() : boolean;
-    getKeyInfo(refetch: boolean) : Promise<KeyInfo>;
-    request(path : string, options : RequestOptions) : Promise<ApiRequestResult>;
-    getResponse(url : string, options : RequestOptions) : Promise<any>;
-    cleanup(disableToken: boolean): Promise<void>;
+    getKeyInfo(refetch ?: boolean) : Promise<KeyInfo>;
+    request(path : string, options ?: RequestOptions) : Promise<ApiRequestResult>;
+    getResponse(url : string, options ?: RequestOptions) : Promise<any>;
+    cleanup(disableToken ?: boolean): Promise<void>;
     setRefreshUrl(url : string) : void;
 }
 
@@ -17,18 +17,18 @@ export interface Client extends Base {
     getProps(): Promise<ClientProps>;
     getChatCompleteOptions(): Promise<ChatCompletionsOptions>;
     getCurrentMessages(): Promise<InferenceCurrentMessages>;
-    getHistory(page: number, size: number): Promise<InferenceHistoryPage>;
-    getFiles(page: number, size: number): Promise<MediaFilePage>;
+    getHistory(page ?: number, size ?: number): Promise<InferenceHistoryPage>;
+    getFiles(page ?: number, size ?: number): Promise<MediaFilePage>;
 }
 
 export interface ServerClient extends Base {
     getProps(key: string) : Promise<ApiRequestResult>;
-    createSession(options : KeyCreateOptions) : Promise<ApiRequestResult>;
-    createApiKey(options : KeyCreateOptions) : Promise<ApiRequestResult>;
+    createSession(options ?: KeyCreateOptions) : Promise<ApiRequestResult>;
+    createApiKey(options ?: KeyCreateOptions) : Promise<ApiRequestResult>;
     getInfo(key: string) : Promise<ApiRequestResult>;
     disableKey(key: string) : Promise<ApiRequestResult>;
-    getFiles(idKey: string, page: number, size: number): Promise<MediaFilePage>
-    getHistory(idKey: string, page: number, size: number): Promise<MediaFilePage>;
+    getFiles(idKey: string, page ?: number, size ?: number): Promise<MediaFilePage>
+    getHistory(idKey: string, page ?: number, size ?: number): Promise<MediaFilePage>;
     setParams(data : any) : Promise<ApiRequestResult>;
     getParams() : Promise<ApiRequestResult>;
     updateParams(data : any) : Promise<ApiRequestResult>;
@@ -36,8 +36,8 @@ export interface ServerClient extends Base {
     getApiSession(userId: string): Promise<ApiSessionResult | null>;
     linkApiSession(userId: string, apiSessionToken: string, apiSessionExpires: number): Promise<boolean>;
     unlinkApiSession(userId: string): Promise<boolean>;
-    createApiSession(userId: string, email: string, expiresInMinutes: number): Promise<ApiSessionResult>;
-    syncApiSession(userId: string, email: string, expiresInMinutes: number, minimaExpiresInMinutes: number) : Promise<ApiSessionResult>;
+    createApiSession(userId: string, email: string, expiresInMinutes ?: number): Promise<ApiSessionResult>;
+    syncApiSession(userId: string, email: string, expiresInMinutes ?: number, minimaExpiresInMinutes ?: number) : Promise<ApiSessionResult>;
     blockUser(userId: string | number) : Promise<boolean>;
     unblockUser(userId: string | number): Promise<boolean>;
 }

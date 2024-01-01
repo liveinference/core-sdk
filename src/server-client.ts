@@ -114,7 +114,7 @@ export class ServerClient extends Base implements types.ServerClient {
         else return true;
     }
 
-    async createApiSession(userId: string, email: string, expiresInMinutes: number): Promise<types.ApiSessionResult> {
+    async createApiSession(userId: string, email: string, expiresInMinutes: number = 120): Promise<types.ApiSessionResult> {
         const { data: {key: apiSessionToken, expires_at}, error } = 
             await this.createSession({
                 expires_in_minutes: expiresInMinutes, 
