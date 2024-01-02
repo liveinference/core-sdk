@@ -2,7 +2,7 @@
 import EventEmitter from 'events';
 import { io } from 'socket.io-client';
 import axios from 'axios';
-import { unauthorized } from './utils';
+import * as utils from "./utils";
 import type * as types from './types';
 import { sampleRate, apiPath, moduleUrl, recordingInterval } from './config';
 
@@ -197,7 +197,7 @@ export class LiveInference extends EventEmitter {
     private connectSocket() {
         if (this.debug) console.log('run connectSocket');
         const token =  this.client.getAuthKey();
-        this.socket = io(this.client.getApiBaseUrl(), {
+        this.socket = io(utils.getApiBaseUrl(), {
             path: apiPath,
             auth: { token },
             addTrailingSlash: false,
@@ -278,7 +278,7 @@ export class LiveInference extends EventEmitter {
                         break;
                     }
                     case 'invalid-token': {
-                        unauthorized('invalid token');
+                        utils.unauthorized('invalid token');
                         this.stop();
                         break;
                     }

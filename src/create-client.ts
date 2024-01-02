@@ -19,18 +19,26 @@ export default function createClient({
     progress = ['transcript', 'chat-completions'],
     maxDuration = 45,
     debug,
-    useQuery = false, 
+    useQuery = false,
+    apiBaseUrl,
 } : types.InputOptions = {}) : types.BrowserClientCreateResult {
 
     if (!isInBrowser()) {
         throw new Error('browser client must be created in browser');
     }
 
-    if (debug === undefined) debug = utils.getApiBaseUrl().includes('localhost');
-    
+    if (apiBaseUrl) {
+        utils.setApiBaseUrl(apiBaseUrl);
+    }
+
+    if (debug === undefined) {
+        debug = utils.getApiBaseUrl().includes('localhost');
+    }
+
     if (!expiresAt && expires_at) {
         expiresAt = expires_at;
     }
+    
     if (!expiresAt && expires) {
         expiresAt = new Date(expires * 1000);
     }

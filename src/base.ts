@@ -1,12 +1,6 @@
 import type * as types from './types';
 import isInBrowser from './is-in-browser';
-import { 
-    getKeyInfo, 
-    request, 
-    getResponse, 
-    setApiBaseUrl, 
-    getApiBaseUrl 
-} from './utils';
+import { getKeyInfo, request, getResponse } from './utils';
 import type { EventEmitter } from 'events';
 
 const refreshMinutesBeforeExpiration = 5;
@@ -18,14 +12,6 @@ export class Base implements types.Base {
     protected keyInfo : types.KeyInfo | undefined;
     protected refreshTimer : any | undefined;
     protected refreshUrl : string | undefined;
-
-    public setApiBaseUrl(url: string) : void {
-        setApiBaseUrl(url);
-    }
-
-    public getApiBaseUrl() : string {
-        return getApiBaseUrl();
-    }
 
     public getAuthKey() : string {
         if (!this.keyInfo || !this.keyInfo.key) {

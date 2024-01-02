@@ -2,8 +2,6 @@ import type { EventEmitter } from 'events';
 
 export interface Base {
     eventEmitter : EventEmitter | undefined;
-    setApiBaseUrl(url: string) : void;
-    getApiBaseUrl() : string;
     getAuthKey() : string;
     isExpired() : boolean;
     getKeyInfo(refetch ?: boolean) : Promise<KeyInfo>;
@@ -69,6 +67,7 @@ export interface InputOptions {
     progress?: string[],
     maxDuration?: number,
     useQuery?: boolean,
+    apiBaseUrl?: string,
     debug?: boolean,
 }
 
