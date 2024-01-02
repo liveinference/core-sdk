@@ -18,8 +18,12 @@ export default function getServerClient(
                 throw new Error("LIVE_INFERENCE_API_KEY is not set");
             }
         }
-        if (!apiBaseUrl && process.env.LIVE_INFERENCE_API_BASE_URL) {
-            apiBaseUrl = process.env.LIVE_INFERENCE_API_BASE_URL;
+        if (!apiBaseUrl) {
+            if (process.env.LIVE_INFERENCE_API_URL) {
+                apiBaseUrl = process.env.LIVE_INFERENCE_API_URL;
+            } else if (process.env.NEXT_PUBLIC_LIVE_INFERENCE_API_URL) {
+                apiBaseUrl = process.env.NEXT_PUBLIC_LIVE_INFERENCE_API_URL;
+            }
         }
         if (apiBaseUrl) {
             utils.setApiBaseUrl(apiBaseUrl);

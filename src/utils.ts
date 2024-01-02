@@ -7,8 +7,8 @@ import { api_base_url } from './config';
 let apiBaseUrl = api_base_url;
 
 if (!isInBrowser()) {
-    if (process.env.LIVEINFERENCE_API_URL) {
-        apiBaseUrl = process.env.LIVEINFERENCE_API_URL;
+    if (process.env.LIVE_INFERENCE_API_URL) {
+        apiBaseUrl = process.env.LIVE_INFERENCE_API_URL;
     }
 }
 
