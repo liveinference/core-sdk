@@ -118,6 +118,7 @@ export interface KeyInfo {
 export interface KeyCreateOptions {
     expires_in_minutes?: number,
     expires_in_days?: number,
+    user_id?: string,
     customer_id?: string,
     scopes?: string[], 
     origin?: string, 
